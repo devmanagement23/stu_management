@@ -8,43 +8,34 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>ACTC</title>
+    <title>Add Student</title>
   </head>
   <body>
     {% include 'students/navbar.html' %}
-    <h1 class="text-center">Apex Computer Training Center</h1>
-    <h3 class="text-center">List of Students</h3>
-
+    <h1 class="text-center my-3">Update Student</h1>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
+        <div class="col-md-9 offset-md-2">
+          <div class="card bg-light">
             <div class="card-body">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>SNO</th>
-                    <th>ROLL NO</th>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for s in studentall %}
-                  <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{s.roll}}</td>
-                    <td>{{s.name}}</td>
-                    <td>{{s.email}}</td>
-                    <td>
-                      <a href="/students/delete-std/{{s.id}}" class="btn btn-danger md-sm">Delete</a>
-                      <a href="/students/update-std/{{s.id}}" class="btn btn-success md-sm">Update</a>
-                    </td>
-                  </tr>
-
-                  {% endfor%}
-                </tbody>
-              </table>
+              <form action="/students/do-update-std/{{studentDetail.id}}" method="POST">
+                {% csrf_token %}
+                <div class="md-3">
+                  <label for="roll">Roll</label>
+                  <input name="std_roll" type="text" id="roll" class="form-control" required value="{{studentDetail.roll}}">
+                </div>
+                <div class="md-3">
+                  <label for="name">Name</label>
+                  <input name="std_name" type="text" id="name" class="form-control" required value="{{studentDetail.name}}">                  
+                </div>
+                <div class="md-3">
+                  <label for="email">Email</label>
+                  <input name="std_email" type="text" id="email" class="form-control" required value="{{studentDetail.email}}">                  
+                </div>
+                <div class="container text-center my-3">
+                  <button class="btn btn-success">Update Student</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

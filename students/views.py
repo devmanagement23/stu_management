@@ -34,3 +34,31 @@ def add_student(request):
 
     # this bleow return line is like  ELSE part.
     return render(request,"students/add_student.html")
+
+
+def delete_student(request,roll):
+    s = Student.objects.get(pk=roll)
+    s.delete()
+
+    return redirect("/students/home")
+
+def update_student(request,roll):
+    ss = Student.objects.get(pk=roll)
+    return render(request,'students/updating_student.html',{'studentDetail':ss})
+
+def do_update_student(request,roll):
+    #retreive the user inputs
+        student_roll_update = request.POST.get("std_roll")
+        student_name_update = request.POST.get("std_name")
+        student_email_update = request.POST.get("std_email")
+
+        #donot create new object , get already filled element from database
+        sm=Student.objects.get(pk=roll)
+
+        sm.roll = student_roll_update
+        sm.name = student_name_update
+        sm.email = student_email_update
+
+        sm.save()
+
+        return redirect("/students/home")
