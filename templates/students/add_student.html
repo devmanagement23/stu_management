@@ -12,7 +12,35 @@
   </head>
   <body>
     {% include 'students/navbar.html' %}
-    <h1>Add New Student</h1>
+    <h1 class="text-center my-3">Add New Student</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 offset-md-2">
+          <div class="card bg-light">
+            <div class="card-body">
+              <form action="/students/add_student/" method="POST">
+                {% csrf_token %}
+                <div class="md-3">
+                  <label for="roll">Roll</label>
+                  <input name="std_roll" type="text" id="roll" class="form-control" required>
+                </div>
+                <div class="md-3">
+                  <label for="name">Name</label>
+                  <input name="std_name" type="text" id="name" class="form-control" required>                  
+                </div>
+                <div class="md-3">
+                  <label for="email">Email</label>
+                  <input name="std_email" type="text" id="email" class="form-control" required>                  
+                </div>
+                <div class="container text-center my-3">
+                  <button class="btn btn-primary">Add Student</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

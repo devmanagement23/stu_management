@@ -12,7 +12,40 @@
   </head>
   <body>
     {% include 'students/navbar.html' %}
-    <h1>Computer Training</h1>
+    <h1 class="text-center">Apex Computer Training Center</h1>
+    <h3 class="text-center">List of Students</h3>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>SNO</th>
+                    <th>ROLL NO</th>
+                    <th>NAME</th>
+                    <th>EMAIL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for s in studentall %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{s.roll}}</td>
+                    <td>{{s.name}}</td>
+                    <td>{{s.email}}</td>
+                  </tr>
+
+                  {% endfor%}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
